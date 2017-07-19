@@ -1,0 +1,96 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
+    flavorDimensions "api"
+    defaultConfig {
+        applicationId "com.rxkotlindaggerdemo"
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        debug{
+
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+        }
+    }
+
+    productFlavors {
+        dev {
+            dimension "api"
+        }
+        staging {
+            dimension "api"
+        }
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //Testing Libraries
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testImplementation "junit:junit:$rootProject.jUnitVersion"
+    androidTestImplementation "com.android.support:support-annotations:$rootProject.supportLibraryVersion"
+    androidTestImplementation 'com.android.support.test:runner:0.5'
+    // Mockito for unit tests
+    testImplementation 'org.mockito:mockito-core:2.8.47'
+    // Mockito for Android tests
+    androidTestImplementation 'org.mockito:mockito-android:2.8.9'
+
+    //kotlin library
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+   //constraint layout
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+
+    // Support Libraries
+    implementation "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:design:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:support-v4:$rootProject.supportLibraryVersion"
+
+    // Networking + Parsing
+    implementation 'com.squareup.okhttp3:okhttp:3.8.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    devImplementation('com.readystatesoftware.chuck:library:1.0.4') {
+        exclude group: 'com.squareup.okhttp3', module: 'okhttp'
+    }
+    stagingImplementation('com.readystatesoftware.chuck:library-no-op:1.0.4') {
+        exclude group: 'com.squareup.okhttp3', module: 'okhttp'
+    }
+
+    // Json Serializer/De-Serializer
+    implementation 'com.google.code.gson:gson:2.8.1'
+
+    // Lazy Image Loading
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+
+    // Timber Logger
+    implementation 'com.jakewharton.timber:timber:4.5.1'
+
+    // Dagger
+    implementation "com.google.dagger:dagger:$daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+}
