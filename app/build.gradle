@@ -7,6 +7,21 @@ apply plugin: 'kotlin-android-extensions'
 
 
 android {
+    //type
+    def STRING = "String"
+    def RES_STRING = "string"
+
+    //value
+    def fbAppId = "109872926313335"
+    def twitterAppKey = "03QuoQEGwRl8a5dhEMYkGGb3h"
+    def twitterAppSecret = "PZFhyKrDzzKCO6Z4zduHPiNwUWZqo6UhWrPmS1wJj3hH5RqM75"
+
+    //variable
+    def FACEBOOK_APP_ID = "facebook_application_id"
+    def FACEBOOK_LOGIN_PROTOCOL_SCHEME = "facebook_login_protocol_scheme"
+    def TWITTER_CONSUMER_KEY = "twitter_consumer_key"
+    def TWITTER_CONSUMER_SECRET = "twitter_consumer_secret"
+
     compileSdkVersion rootProject.compileSdkVersion
     buildToolsVersion rootProject.buildToolsVersion
     flavorDimensions "api"
@@ -17,7 +32,29 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        resValue RES_STRING, FACEBOOK_APP_ID, fbAppId
+        resValue RES_STRING, FACEBOOK_LOGIN_PROTOCOL_SCHEME, "fb${fbAppId}"
+        resValue RES_STRING, TWITTER_CONSUMER_KEY, twitterAppKey
+        resValue RES_STRING, TWITTER_CONSUMER_SECRET, twitterAppSecret
+
     }
+
+    signingConfigs {
+        debug {
+            storeFile file("../release/debug.keystore")
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            keyPassword "android"
+        }
+        release {
+            storeFile file("../release/release.jks")
+            storePassword "RxKotlinD@ggerDemo"
+            keyAlias "releasekey"
+            keyPassword "RxKotlinD@ggerDemo"
+        }
+    }
+
     buildTypes {
         debug {
 
