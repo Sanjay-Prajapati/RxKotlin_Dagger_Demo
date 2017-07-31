@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">RxKotlinDaggerDemo</string>
+    <string name="auth_sign_in_cancelled">SignIn Cancelled</string>
+    <string name="network_error">No internet connection available.</string>
+    <string name="auth_unknown_error">Something happen wrong.</string>
+    <string name="auth_unknown_signin_response">Something happen wrong please try again.</string>
+    <string name="progress_dialog_signing_up">Creating your shiny new account...</string>
+    <string name="logout">logout</string>
 </resources>
