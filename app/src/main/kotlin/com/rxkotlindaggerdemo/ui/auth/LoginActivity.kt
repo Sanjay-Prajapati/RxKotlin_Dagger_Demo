@@ -3,10 +3,12 @@ package com.rxkotlindaggerdemo.ui.auth
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.view.View
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.ErrorCodes
 import com.firebase.ui.auth.IdpResponse
 import com.firebase.ui.auth.ResultCodes
+import com.google.android.gms.tasks.OnCompleteListener
 import com.rxkotlindaggerdemo.BuildConfig
 import com.rxkotlindaggerdemo.R
 import com.rxkotlindaggerdemo.ui.base.BaseActivity
@@ -24,7 +26,9 @@ class LoginActivity : BaseActivity() {
 
         if (auth.currentUser != null) {
             tv_status.setText("User Already loggedIn")
+            btn_logout.visibility = View.VISIBLE
         } else {
+            btn_logout.visibility = View.GONE
             // not signed in
             startActivityForResult(
                     AuthUI.getInstance()
@@ -36,11 +40,19 @@ class LoginActivity : BaseActivity() {
                                             AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build(),
                                             AuthUI.IdpConfig.Builder(AuthUI.FACEBOOK_PROVIDER).build(),
                                             AuthUI.IdpConfig.Builder(AuthUI.TWITTER_PROVIDER).build()
-                                    )
-                            ).setTheme(R.style.AppTheme)
+                                    ))
+                            .setTheme(R.style.SignInTheme)
                             .setIsSmartLockEnabled(!BuildConfig.DEBUG, true)
                             .build(),
                     RC_SIGN_IN)
+        }
+        btn_logout.setOnClickListener {
+            AuthUI.getInstance()
+                    .signOut(this)
+                    .addOnCompleteListener(OnCompleteListener {
+                        startActivity(Intent(this, LoginActivity::class.java))
+                        finish()
+                    })
         }
     }
 
@@ -50,10 +62,12 @@ class LoginActivity : BaseActivity() {
             val response: IdpResponse? = IdpResponse.fromResultIntent(data)
             if (resultCode == ResultCodes.OK) {
                 tv_status.setText("User Logged In successfully")
+                btn_logout.visibility = View.VISIBLE
                 return
             } else {
                 if (response == null) {
                     showSnackbar(R.string.auth_sign_in_cancelled)
+                    finish()
                     return
                 }
                 if (response.errorCode == ErrorCodes.NO_NETWORK) {
