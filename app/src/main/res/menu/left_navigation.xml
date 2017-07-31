@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/grp1"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_drag_drop"
+            android:title="@string/drag_drop"/>
+        <item
+            android:id="@+id/nav_github_profile"
+            android:title="@string/github_profile"/>
+        <item
+            android:id="@+id/nav_user_profile"
+            android:title="@string/user_profile"/>
+    </group>
+</menu>
