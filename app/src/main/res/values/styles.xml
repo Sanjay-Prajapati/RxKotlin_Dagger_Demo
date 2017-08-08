@@ -26,5 +26,6 @@
     <style name="AppTheme.NavigationView">
         <item name="android:listDivider">@drawable/nav_divider</item>
         <item name="android:textColorSecondary">@color/white</item>
+        <item name="android:windowBackground">@color/colorPrimary</item>
     </style>
 </resources>

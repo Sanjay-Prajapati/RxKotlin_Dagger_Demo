@@ -32,6 +32,7 @@
     </android.support.constraint.ConstraintLayout>
 
     <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
@@ -42,22 +43,36 @@
         app:itemIconTint="@color/colorAccent"
         app:menu="@menu/left_navigation">
 
-        <ImageView
-            android:id="@+id/iv_logout"
-            android:layout_width="@dimen/design_navigation_icon_size"
-            android:layout_height="@dimen/design_navigation_icon_size"
-            android:layout_marginLeft="@dimen/design_navigation_icon_padding"
-            android:src="@drawable/ic_nav_logout"
-            android:tint="@color/colorPrimaryDark"/>
+        <LinearLayout
+            android:id="@+id/ll_logout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/nav_footer_height"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="@dimen/nav_footer_margin"
+            android:background="@drawable/ripple_effect"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical">
 
-        <TextView
-            android:id="@+id/tv_logout"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/design_navigation_icon_padding"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:text="@string/nav_logout"/>
+            <ImageView
+                android:id="@+id/iv_logout"
+                android:layout_width="@dimen/design_navigation_icon_size"
+                android:layout_height="@dimen/design_navigation_icon_size"
+                android:layout_marginLeft="@dimen/design_navigation_icon_padding"
+                android:background="@color/colorAccent"
+                android:src="@drawable/ic_nav_logout"
+                android:tint="@color/colorPrimaryDark"/>
+
+            <TextView
+                android:id="@+id/tv_logout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/design_navigation_icon_padding"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="@string/nav_logout"/>
+        </LinearLayout>
 
     </android.support.design.widget.NavigationView>
 </android.support.v4.widget.DrawerLayout>

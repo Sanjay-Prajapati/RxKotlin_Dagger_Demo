@@ -29,4 +29,6 @@
 
     <dimen name="nav_header_avatar_size">48dp</dimen>
     <dimen name="nav_footer_height">52dp</dimen>
+    <dimen name="nav_header_vertical_spacing">32dp</dimen>
+    <dimen name="nav_footer_margin">-52dp</dimen>
 </resources>
