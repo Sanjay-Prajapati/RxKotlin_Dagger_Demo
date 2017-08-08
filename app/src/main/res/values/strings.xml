@@ -6,4 +6,10 @@
     <string name="auth_unknown_signin_response">Something happen wrong please try again.</string>
     <string name="progress_dialog_signing_up">Creating your shiny new account...</string>
     <string name="logout">logout</string>
+    <string name="github_profile">Github Profile</string>
+    <string name="user_profile">User Profile</string>
+    <string name="drag_drop"><![CDATA[Drag & Drop]]></string>
+    <string name="nav_logout">Logout</string>
+    <string name="navigation_drawer_open">Open Navigation Drawer</string>
+    <string name="navigation_drawer_close">Close Navigation Drawer</string>
 </resources>

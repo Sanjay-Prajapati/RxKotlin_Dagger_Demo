@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="spacing_micro">2dp</dimen>
+    <dimen name="spacing_mini">4dp</dimen>
+    <dimen name="spacing_mini_medium">6dp</dimen>
+    <dimen name="spacing_normal">8dp</dimen>
+    <dimen name="spacing_medium">10dp</dimen>
+    <dimen name="spacing_large">16dp</dimen>
+    <dimen name="spacing_larger">24dp</dimen>
+    <dimen name="spacing_huge">40dp</dimen>
+    <dimen name="spacing_xhuge">52dp</dimen>
+
+    <!-- font sizes -->
+    <dimen name="font_huge">54sp</dimen>
+    <dimen name="font_semi_huge">46sp</dimen>
+    <dimen name="font_sectors">40sp</dimen>
+    <dimen name="font_largest">36sp</dimen>
+    <dimen name="font_larger_medium">26sp</dimen>
+    <dimen name="font_larger">22sp</dimen>
+    <dimen name="font_large">18sp</dimen>
+    <dimen name="font_normal">15sp</dimen>
+    <dimen name="font_normal_medium">16sp</dimen>
+    <dimen name="font_large_medium">17sp</dimen>
+    <dimen name="font_nav_items">17sp</dimen>
+    <dimen name="font_medium">14sp</dimen>
+    <dimen name="font_small_normal">13sp</dimen>
+    <dimen name="font_small">12sp</dimen>
+    <dimen name="font_smaller">10sp</dimen>
+
+    <dimen name="nav_header_avatar_size">48dp</dimen>
+    <dimen name="nav_footer_height">52dp</dimen>
+    <dimen name="nav_header_vertical_spacing">32dp</dimen>
+    <dimen name="nav_footer_margin">-52dp</dimen>
+</resources>

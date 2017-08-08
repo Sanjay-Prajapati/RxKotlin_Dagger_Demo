@@ -12,6 +12,7 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.rxkotlindaggerdemo.BuildConfig
 import com.rxkotlindaggerdemo.R
 import com.rxkotlindaggerdemo.ui.base.BaseActivity
+import com.rxkotlindaggerdemo.ui.home.HomeActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import java.util.*
 
@@ -25,8 +26,8 @@ class LoginActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
 
         if (auth.currentUser != null) {
-            tv_status.setText("User Already loggedIn")
-            btn_logout.visibility = View.VISIBLE
+            startHomeActivity()
+            // btn_logout.visibility = View.VISIBLE
         } else {
             btn_logout.visibility = View.GONE
             // not signed in
@@ -56,13 +57,17 @@ class LoginActivity : BaseActivity() {
         }
     }
 
+    private fun startHomeActivity() {
+        startActivity(Intent(this, HomeActivity::class.java))
+        finish()
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == RC_SIGN_IN) {
             val response: IdpResponse? = IdpResponse.fromResultIntent(data)
             if (resultCode == ResultCodes.OK) {
-                tv_status.setText("User Logged In successfully")
-                btn_logout.visibility = View.VISIBLE
+                startHomeActivity()
                 return
             } else {
                 if (response == null) {
