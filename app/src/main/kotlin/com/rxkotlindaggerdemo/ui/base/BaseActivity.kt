@@ -12,11 +12,13 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.util.Log
+import android.view.View
 import com.firebase.ui.auth.AuthUI
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.rxkotlindaggerdemo.R
 import com.rxkotlindaggerdemo.ui.auth.LoginActivity
+import com.rxkotlindaggerdemo.ui.githubprofile.GitHubProfileActivity
 import kotlinx.android.synthetic.main.activity_singlepane.*
 import kotlinx.android.synthetic.main.app_bar.*
 import timber.log.Timber
@@ -29,14 +31,18 @@ abstract class BaseActivity : AppCompatActivity() {
     // delay to launch nav drawer item, to allow close animation to play
     private val NAVDRAWER_LAUNCH_DELAY = 250
     protected val auth: FirebaseAuth = FirebaseAuth.getInstance()
-    protected abstract fun getLayoutResId(): Int
+
     lateinit var tbToolbar: Toolbar
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(getLayoutResId())
-        getActionbarToolbar();
+
         Log.d("BaseActivity", "OnCreate Method Called")
         Timber.d("OnCreate Method called");
+    }
+
+    override fun setContentView(view: View?) {
+        super.setContentView(view)
+        getActionbarToolbar()
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
@@ -85,9 +91,7 @@ abstract class BaseActivity : AppCompatActivity() {
         Log.d("BaseActivity", "Setup Navigation method called")
         Timber.d("Setup Navigation method called")
         val selfItem = getSelfNavDrawerItem();
-        if (selfItem == null) {
-            Timber.d("setupNavigation: INVALID ITEM")
-        }
+
         if (toolbar == null) {
             Timber.d("setupNavigation: toolbar is not present");
             return
@@ -96,7 +100,7 @@ abstract class BaseActivity : AppCompatActivity() {
             return
         }
         val toggle: ActionBarDrawerToggle = ActionBarDrawerToggle(this,
-                drawer_layout, tbToolbar, R.string.navigation_drawer_open,
+                drawer_layout, toolbar, R.string.navigation_drawer_open,
                 R.string.navigation_drawer_close)
         toggle.setHomeAsUpIndicator(R.drawable.ic_menu)
         drawer_layout.addDrawerListener(toggle)
@@ -122,7 +126,7 @@ abstract class BaseActivity : AppCompatActivity() {
             Log.d("BaseActivity", "Logout clicklistener")
             closeDrawerAndNavigate(it.id)
         })
-        
+
     }
 
     private fun closeDrawerAndNavigate(id: Int) {
@@ -155,6 +159,9 @@ abstract class BaseActivity : AppCompatActivity() {
         if (id == R.id.nav_drag_drop) {
 
         } else if (id == R.id.nav_github_profile) {
+            if (this is GitHubProfileActivity) return
+            startActivity(Intent(this, GitHubProfileActivity::class.java))
+            finish()
 
         } else if (id == R.id.nav_user_profile) {
 
@@ -174,7 +181,23 @@ abstract class BaseActivity : AppCompatActivity() {
                 })
     }
 
-    private fun getSelfNavDrawerItem(): Int {
+    protected open fun getSelfNavDrawerItem(): Int {
         return ITEM_INVALID;
+    }
+
+    public fun intentToFragmentArguments(intentData: Intent?): Bundle? {
+        var arguments: Bundle = Bundle()
+        if (intentData == null) {
+            return arguments
+        }
+        val data = intentData.data
+        if (data != null) {
+            arguments.putParcelable("_uri", data);
+        }
+        val extras = intentData.extras
+        if (extras != null) {
+            arguments.putAll(extras)
+        }
+        return arguments
     }
 }

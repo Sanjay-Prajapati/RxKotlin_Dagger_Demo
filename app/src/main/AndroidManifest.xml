@@ -22,6 +22,10 @@
         <activity
             android:name=".ui.home.HomeActivity"
             android:launchMode="singleTop"/>
+        <activity
+            android:name=".ui.githubprofile.GitHubProfileActivity"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="stateHidden"/>
     </application>
 
 </manifest>
