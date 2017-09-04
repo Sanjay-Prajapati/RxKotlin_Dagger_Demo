@@ -20,11 +20,11 @@ import java.util.*
 class LoginActivity : BaseActivity() {
     private val RC_SIGN_IN = 123
 
-    override fun getLayoutResId() = R.layout.activity_login
+
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
-
+        setContentView(R.layout.activity_login)
         if (auth.currentUser != null) {
             startHomeActivity()
             // btn_logout.visibility = View.VISIBLE

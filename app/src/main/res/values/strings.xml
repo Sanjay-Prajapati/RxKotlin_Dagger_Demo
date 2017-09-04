@@ -12,4 +12,6 @@
     <string name="nav_logout">Logout</string>
     <string name="navigation_drawer_open">Open Navigation Drawer</string>
     <string name="navigation_drawer_close">Close Navigation Drawer</string>
+    <string name="hint_github_username">Enter Github username</string>
+    <string name="unknown_error">Something happen wrong please try again.</string>
 </resources>
